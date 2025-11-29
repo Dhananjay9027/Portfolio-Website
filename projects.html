@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Dhananjay Saini</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --secondary-cyan: #00d4ff;
+            --accent-orange: #ff6b35;
+            --neutral-light: #f8f9fa;
+            --success-green: #10b981;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-dark);
+            color: var(--neutral-light);
+            overflow-x: hidden;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--secondary-cyan), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--secondary-cyan), var(--accent-orange));
+            border-color: var(--secondary-cyan);
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--secondary-cyan);
+        }
+        
+        .project-video-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .project-video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: var(--secondary-cyan);
+        }
+        
+        .project-video-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-cyan);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black bg-opacity-80 backdrop-blur-md z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="orbitron text-xl font-bold gradient-text">DS</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-white hover:text-cyan-400">Home</a>
+                <a href="projects.html" class="nav-link text-cyan-400">Projects</a>
+                <a href="about.html" class="nav-link text-white hover:text-cyan-400">About</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pt-32 pb-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="orbitron text-5xl lg:text-6xl font-bold mb-6 gradient-text reveal-element">My Projects</h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto reveal-element">
+                A collection of innovative games and interactive experiences built with Unity, C#, and cutting-edge technologies.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="pb-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-4 reveal-element">
+                <button class="filter-btn active px-6 py-3 rounded-full font-semibold" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="educational">
+                    Educational
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="action">
+                    Action
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="racing">
+                    Racing
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="puzzle">
+                    Puzzle
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="multiplayer">
+                    Multiplayer
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                
+                <!-- 2248 Puzzle Game -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="puzzle" data-project="project-2248">
+                    <div class="video-container mb-4">
+                        <iframe src="https://www.youtube.com/embed/8AK83eVm2OM" 
+                                title="2248 Puzzle Game" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">2248 Puzzle Game</h3>
+                    <p class="text-gray-300 mb-4">
+                        A strategic number combination puzzle game where players merge matching numbers to reach the highest possible score. 
+                        Features smooth animations, dynamic cell selection, and engaging sound effects.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 rounded-full text-sm">Unity 2D</span>
+                        <span class="px-3 py-1 bg-orange-500 bg-opacity-20 text-orange-500 rounded-full text-sm">C#</span>
+                        <span class="px-3 py-1 bg-green-500 bg-opacity-20 text-green-500 rounded-full text-sm">Puzzle</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">Mobile</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Grid-based gameplay, score tracking, smooth animations, sound integration
+                    </div>
+                </div>
+
+                <!-- Kids Educational Games -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="educational" data-project="project-kids">
+                    <div class="video-container mb-4">
+                        <iframe src="https://www.youtube.com/embed/bW6taxTqRLc" 
+                                title="Kids Educational Games" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">Kids Educational Games</h3>
+                    <p class="text-gray-300 mb-4">
+                        Interactive learning experiences designed for young children with gesture-controlled input. 
+                        Supports hand and face recognition for intuitive gameplay and educational content delivery.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 rounded-full text-sm">Unity 3D</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">AI Vision</span>
+                        <span class="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-500 rounded-full text-sm">Educational</span>
+                        <span class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-sm">Gesture Control</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Hand gesture recognition, face tracking, educational content, child-friendly UI
+                    </div>
+                </div>
+
+                <!-- Shooting Game -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="action" data-project="project-shooting">
+                    <div class="video-container mb-4">
+                        <iframe src="https://www.youtube.com/embed/xDD4s-LeqDs" 
+                                title="AI Shooting Game" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">AI-Powered Shooting Game</h3>
+                    <p class="text-gray-300 mb-4">
+                        Tactical first-person shooter featuring intelligent enemy AI, multiple weapon systems (pistol, rifle, sniper), 
+                        AI-controlled drones, and immersive third-person character controls.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 rounded-full text-sm">Unity 3D</span>
+                        <span class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-500 rounded-full text-sm">AI</span>
+                        <span class="px-3 py-1 bg-gray-500 bg-opacity-20 text-gray-500 rounded-full text-sm">FPS</span>
+                        <span class="px-3 py-1 bg-orange-500 bg-opacity-20 text-orange-500 rounded-full text-sm">Weapons</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Enemy AI behavior, weapon switching, drone combat, tactical gameplay
+                    </div>
+                </div>
+
+                <!-- Open World Game -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="action" data-project="project-openworld">
+                    <div class="video-container mb-4">
+                        <iframe src="https://www.youtube.com/embed/GDAJ0luSyig" 
+                                title="Open World Game" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">Story-Driven Open World</h3>
+                    <p class="text-gray-300 mb-4">
+                        Immersive open-world adventure with compelling narrative, animated cutscenes, and diverse gameplay mechanics. 
+                        Features enemy AI, vehicle controls, and expansive environments for exploration.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 rounded-full text-sm">Unity 3D</span>
+                        <span class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-500 rounded-full text-sm">Story</span>
+                        <span class="px-3 py-1 bg-green-500 bg-opacity-20 text-green-500 rounded-full text-sm">Open World</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">Vehicles</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Story progression, cutscenes, enemy AI, vehicle mechanics, exploration
+                    </div>
+                </div>
+
+                <!-- Car Racing Game -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="racing" data-project="project-car">
+                    <div class="video-container mb-4">
+                        <iframe src="https://www.youtube.com/embed/8fV3eeX7UhI" 
+                                title="Car Racing Game" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">Off-Road Racing Experience</h3>
+                    <p class="text-gray-300 mb-4">
+                        High-octane 3D racing game featuring realistic car physics, multiple vehicles and tracks, 
+                        time attack modes, and dynamic camera controls for immersive racing gameplay.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 rounded-full text-sm">Unity 3D</span>
+                        <span class="px-3 py-1 bg-orange-500 bg-opacity-20 text-orange-500 rounded-full text-sm">Physics</span>
+                        <span class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-500 rounded-full text-sm">Racing</span>
+                        <span class="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-500 rounded-full text-sm">Vehicles</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Realistic physics, multiple cars/tracks, time attack, camera switching
+                    </div>
+                </div>
+
+                <!-- Horror Game Project -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="action">
+                    <div class="video-container mb-4 bg-gray-800 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">👻</div>
+                            <p class="text-gray-400">3D Horror Game</p>
+                            <p class="text-sm text-gray-500 mt-2">Coming Soon</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">Psychological Horror Experience</h3>
+                    <p class="text-gray-300 mb-4">
+                        Atmospheric horror game with realistic graphics, immersive cutscenes, and optimized gameplay. 
+                        Built with Unity 3D featuring custom shaders and visual effects for maximum psychological impact.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-cyan-400 bg-opacity-20 text-cyan-400 rounded-full text-sm">Unity 3D</span>
+                        <span class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-500 rounded-full text-sm">Horror</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">Shaders</span>
+                        <span class="px-3 py-1 bg-gray-500 bg-opacity-20 text-gray-500 rounded-full text-sm">Desktop</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Atmospheric lighting, custom shaders, psychological elements, optimization
+                    </div>
+                </div>
+
+                <!-- Multiplayer Backend System -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="multiplayer">
+                    <div class="video-container mb-4 bg-gray-800 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🌐</div>
+                            <p class="text-gray-400">Multiplayer Backend</p>
+                            <p class="text-sm text-gray-500 mt-2">Firebase Integration</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">Real-time Multiplayer Systems</h3>
+                    <p class="text-gray-300 mb-4">
+                        Scalable backend systems using Firebase Firestore, Authentication, and Cloud Functions. 
+                        Features real-time multiplayer, matchmaking, leaderboards, and coin-based transaction systems.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-orange-500 bg-opacity-20 text-orange-500 rounded-full text-sm">Firebase</span>
+                        <span class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-500 rounded-full text-sm">Netcode</span>
+                        <span class="px-3 py-1 bg-green-500 bg-opacity-20 text-green-500 rounded-full text-sm">Backend</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">Real-time</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Matchmaking, leaderboards, refer-earn, user progression, NoSQL
+                    </div>
+                </div>
+
+                <!-- Teaching Assistant Work -->
+                <div class="project-video-card rounded-xl p-6 reveal-element" data-category="educational">
+                    <div class="video-container mb-4 bg-gray-800 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🎓</div>
+                            <p class="text-gray-400">Unity Teaching</p>
+                            <p class="text-sm text-gray-500 mt-2">Educational Content</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-cyan-400">Unity Teaching Assistant</h3>
+                    <p class="text-gray-300 mb-4">
+                        Developed comprehensive Unity Game Development content for CodingZen. 
+                        Led teaching sessions, created educational materials, and mentored students in game development fundamentals.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-500 rounded-full text-sm">Teaching</span>
+                        <span class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-500 rounded-full text-sm">Mentoring</span>
+                        <span class="px-3 py-1 bg-green-500 bg-opacity-20 text-green-500 rounded-full text-sm">Content Creation</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">Leadership</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Curriculum development, student mentoring, content creation, leadership
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-80 py-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="orbitron text-2xl font-bold gradient-text mb-4">Dhananjay Saini</div>
+            <p class="text-gray-400 mb-6">© 2024 Dhananjay Saini. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:dhananjaysaini928@gmail.com" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/dhananjaysaini" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="https://github.com/dhananjaysaini" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Project filtering functionality
+        function initProjectFiltering() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-video-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || category === filter) {
+                            card.classList.remove('hidden');
+                            anime({
+                                targets: card,
+                                opacity: [0, 1],
+                                scale: [0.8, 1],
+                                duration: 400,
+                                easing: 'easeOutCubic',
+                                delay: Math.random() * 200
+                            });
+                        } else {
+                            anime({
+                                targets: card,
+                                opacity: [1, 0],
+                                scale: [1, 0.8],
+                                duration: 300,
+                                easing: 'easeInCubic',
+                                complete: () => {
+                                    card.classList.add('hidden');
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        }
+
+        // Initialize functionality when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize filtering
+            initProjectFiltering();
+            
+            // Initialize reveal animations
+            const revealElements = document.querySelectorAll('.reveal-element');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [30, 0],
+                            duration: 800,
+                            easing: 'easeOutCubic'
+                        });
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+            
+            // Initialize mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    let mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu) {
+                        mobileMenu = document.createElement('div');
+                        mobileMenu.id = 'mobile-menu';
+                        mobileMenu.className = 'md:hidden bg-black bg-opacity-90 backdrop-blur-md absolute top-full left-0 w-full py-4';
+                        mobileMenu.innerHTML = `
+                            <div class="flex flex-col space-y-4 px-6">
+                                <a href="index.html" class="text-white hover:text-cyan-400 transition-colors">Home</a>
+                                <a href="projects.html" class="text-cyan-400">Projects</a>
+                                <a href="about.html" class="text-white hover:text-cyan-400 transition-colors">About</a>
+                            </div>
+                        `;
+                        document.querySelector('nav').appendChild(mobileMenu);
+                    }
+                    mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+                });
+            }
+            
+            // Add page load animation
+            anime({
+                targets: 'body',
+                opacity: [0, 1],
+                duration: 1000,
+                easing: 'easeOutCubic'
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Dhananjay Saini</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --secondary-cyan: #00d4ff;
+            --accent-orange: #ff6b35;
+            --neutral-light: #f8f9fa;
+            --success-green: #10b981;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-dark);
+            color: var(--neutral-light);
+            overflow-x: hidden;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--secondary-cyan), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-cyan);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: linear-gradient(to bottom, var(--secondary-cyan), transparent);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--secondary-cyan);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--secondary-cyan), var(--accent-orange));
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .skill-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black bg-opacity-80 backdrop-blur-md z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="orbitron text-xl font-bold gradient-text">DS</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-white hover:text-cyan-400">Home</a>
+                <a href="projects.html" class="nav-link text-white hover:text-cyan-400">Projects</a>
+                <a href="about.html" class="nav-link text-cyan-400">About</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal-element">
+                    <h1 class="orbitron text-5xl lg:text-6xl font-bold mb-6 gradient-text">About Me</h1>
+                    <p class="text-xl text-gray-300 mb-6 leading-relaxed">
+                        I'm a passionate Unity Game Developer with expertise in creating immersive gaming experiences. 
+                        From educational games with gesture controls to action-packed shooters with AI, I love pushing 
+                        the boundaries of what's possible in interactive entertainment.
+                    </p>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        Currently working as a Software Developer at Darn Games LLP, I specialize in multiplayer systems, 
+                        backend integration, and creating scalable gaming solutions that engage and delight players.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="mailto:dhananjaysaini928@gmail.com" class="bg-cyan-400 bg-opacity-20 text-cyan-400 px-6 py-3 rounded-lg font-semibold hover:bg-opacity-30 transition-all">
+                            Get In Touch
+                        </a>
+                        <a href="projects.html" class="border-2 border-cyan-400 text-cyan-400 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all">
+                            View My Work
+                        </a>
+                    </div>
+                </div>
+                <div class="reveal-element">
+                    <div class="relative">
+                        <img src="./resources/DJ.png" alt="Dhananjay Saini" 
+                             class="w-full max-w-md mx-auto rounded-2xl shadow-2xl border-4 border-cyan-400">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-r from-cyan-400 to-orange-500 rounded-full opacity-20 animate-pulse"></div>
+                        <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-r from-orange-500 to-cyan-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="py-20 px-6 bg-gray-900 bg-opacity-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal-element">
+                <h2 class="orbitron text-4xl lg:text-5xl font-bold mb-6 gradient-text">Professional Journey</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    My career path in game development, from teaching assistant to professional developer.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="timeline-item reveal-element">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Software Developer</h3>
+                                <p class="text-lg font-semibold">Darn Games LLP</p>
+                            </div>
+                            <span class="text-sm text-gray-400 bg-gray-700 px-3 py-1 rounded-full mt-2 md:mt-0">
+                                Sep 2025 - Present
+                            </span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Creating scalable backend logic for state-wise leaderboards, coin-based reward systems, and refer-and-earn programs. 
+                            Developing 2D multiplayer games using Unity Netcode for real-time multiplayer experiences.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Unity Netcode</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Backend Development</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Multiplayer Systems</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">2D Games</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal-element">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Unity 3D Developer (Intern)</h3>
+                                <p class="text-lg font-semibold">Pythrust Technologies</p>
+                            </div>
+                            <span class="text-sm text-gray-400 bg-gray-700 px-3 py-1 rounded-full mt-2 md:mt-0">
+                                Feb 2025 - Aug 2025
+                            </span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Engineered scalable backend systems using Firebase Firestore, Authentication, and Cloud Functions. 
+                            Implemented real-time multiplayer features, matchmaking systems, and leaderboards. 
+                            Developed refer-and-earn systems and coin-based transaction logic.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Firebase</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Cloud Functions</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">NoSQL</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">UI/UX Integration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal-element">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Game Developer (Intern)</h3>
+                                <p class="text-lg font-semibold">Akiyam Solutions Private Limited</p>
+                            </div>
+                            <span class="text-sm text-gray-400 bg-gray-700 px-3 py-1 rounded-full mt-2 md:mt-0">
+                                Jan 2025 - Mar 2025
+                            </span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Designed and developed a 3D horror game with emphasis on realistic graphics, immersive cutscenes, 
+                            and optimized gameplay for desktop platforms. Utilized Unity 3D for environment building and custom shaders.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">3D Horror</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Custom Shaders</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Visual Effects</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal-element">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Unity Teaching Assistant (Intern)</h3>
+                                <p class="text-lg font-semibold">CodingZen</p>
+                            </div>
+                            <span class="text-sm text-gray-400 bg-gray-700 px-3 py-1 rounded-full mt-2 md:mt-0">
+                                Aug 2024 - Dec 2024
+                            </span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Primary teaching specialist for Unity Game Development content. Led teaching sessions, 
+                            developed educational materials, and collaborated with senior faculty and Director of Operations.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Teaching</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Curriculum Development</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Leadership</span>
+                            <span class="skill-badge px-3 py-1 rounded-full text-sm">Mentoring</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal-element">
+                <h2 class="orbitron text-4xl lg:text-5xl font-bold mb-6 gradient-text">Technical Expertise</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Comprehensive skill set across game development technologies and programming languages.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 reveal-element">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-4">Programming Languages</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">C#</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-cyan-400 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">C++</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-cyan-400 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Python</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-cyan-400 h-2 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 reveal-element">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-4">Game Engines</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Unity 3D</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Unreal Engine</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Godot</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 reveal-element">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-4">Backend & Cloud</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Firebase</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Firestore</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Cloud Functions</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 reveal-element">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-4">AI & Systems</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Enemy AI</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Pathfinding</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Gesture Recognition</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 reveal-element">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-4">Multiplayer</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Unity Netcode</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Matchmaking</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Real-time Sync</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 reveal-element">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-4">Tools & Platforms</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Git/GitHub</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">VS Code</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold">Blender</span>
+                            <div class="w-24 bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="py-20 px-6 bg-gray-900 bg-opacity-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal-element">
+                <h2 class="orbitron text-4xl lg:text-5xl font-bold mb-6 gradient-text">Achievements</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Recognition and accomplishments throughout my game development journey.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center reveal-element">
+                    <div class="text-4xl mb-4">🏆</div>
+                    <h3 class="text-xl font-bold text-cyan-400 mb-2">Digital India Gaming Expo</h3>
+                    <p class="text-gray-300">Represented Akiyam Solution Pvt Ltd at the Digital India Gaming Expo in Delhi, showcasing our game to industry professionals and stakeholders.</p>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center reveal-element">
+                    <div class="text-4xl mb-4">🥈</div>
+                    <h3 class="text-xl font-bold text-cyan-400 mb-2">Project Competition</h3>
+                    <p class="text-gray-300">Secured 2nd position in Project Competition held in CGC Jhanjeri on Engineer's Day 2022 for the AOT Game project.</p>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center reveal-element">
+                    <div class="text-4xl mb-4">🏅</div>
+                    <h3 class="text-xl font-bold text-cyan-400 mb-2">Coding Competitions</h3>
+                    <p class="text-gray-300">First place in coding competitions: Code Compete Conquer and Bug Debug Parivartan, demonstrating strong programming skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal-element">
+                <h2 class="orbitron text-4xl lg:text-5xl font-bold mb-6 gradient-text">Get In Touch</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Interested in collaborating or have a project in mind? Let's connect and create something amazing together.
+                </p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto">
+                <form id="contact-form" class="space-y-6 reveal-element">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold mb-2 text-cyan-400">Name</label>
+                            <input type="text" id="name" name="name" required
+                                   class="form-input w-full px-4 py-3 rounded-lg text-white"
+                                   placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold mb-2 text-cyan-400">Email</label>
+                            <input type="email" id="email" name="email" required
+                                   class="form-input w-full px-4 py-3 rounded-lg text-white"
+                                   placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-sm font-semibold mb-2 text-cyan-400">Subject</label>
+                        <input type="text" id="subject" name="subject" required
+                               class="form-input w-full px-4 py-3 rounded-lg text-white"
+                               placeholder="Project Collaboration / Job Opportunity / Question">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-semibold mb-2 text-cyan-400">Message</label>
+                        <textarea id="message" name="message" rows="6" required
+                                  class="form-input w-full px-4 py-3 rounded-lg text-white resize-none"
+                                  placeholder="Tell me about your project, collaboration ideas, or any questions you have..."></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" id="submit-btn"
+                                class="submit-btn px-8 py-4 rounded-lg text-white font-semibold text-lg">
+                            <span id="btn-text">Send Message</span>
+                            <span id="btn-loading" class="hidden">Sending...</span>
+                        </button>
+                    </div>
+                    
+                    <div id="form-message" class="text-center text-sm hidden"></div>
+                </form>
+                
+                <!-- Contact Info -->
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-80 py-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="orbitron text-2xl font-bold gradient-text mb-4">Dhananjay Saini</div>
+            <p class="text-gray-400 mb-6">© 2024 Dhananjay Saini. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:dhananjaysaini928@gmail.com" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/dhananjaysaini" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="https://github.com/dhananjaysaini" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact form handling
+        function initContactForm() {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+            const formMessage = document.getElementById('form-message');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Show loading state
+                btnText.classList.add('hidden');
+                btnLoading.classList.remove('hidden');
+                submitBtn.disabled = true;
+                
+                // Simulate form submission (replace with actual endpoint)
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Show success message
+                    formMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
+                    formMessage.className = 'text-center text-sm text-green-400';
+                    formMessage.classList.remove('hidden');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Animate success
+                    anime({
+                        targets: formMessage,
+                        scale: [0.8, 1],
+                        opacity: [0, 1],
+                        duration: 500,
+                        easing: 'easeOutCubic'
+                    });
+                    
+                } catch (error) {
+                    // Show error message
+                    formMessage.textContent = 'Sorry, there was an error sending your message. Please try again.';
+                    formMessage.className = 'text-center text-sm text-red-400';
+                    formMessage.classList.remove('hidden');
+                } finally {
+                    // Reset button state
+                    btnText.classList.remove('hidden');
+                    btnLoading.classList.add('hidden');
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // Initialize functionality when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize contact form
+            initContactForm();
+            
+            // Initialize reveal animations
+            const revealElements = document.querySelectorAll('.reveal-element');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [30, 0],
+                            duration: 800,
+                            easing: 'easeOutCubic'
+                        });
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+            
+            // Initialize mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    let mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu) {
+                        mobileMenu = document.createElement('div');
+                        mobileMenu.id = 'mobile-menu';
+                        mobileMenu.className = 'md:hidden bg-black bg-opacity-90 backdrop-blur-md absolute top-full left-0 w-full py-4';
+                        mobileMenu.innerHTML = `
+                            <div class="flex flex-col space-y-4 px-6">
+                                <a href="index.html" class="text-white hover:text-cyan-400 transition-colors">Home</a>
+                                <a href="projects.html" class="text-white hover:text-cyan-400 transition-colors">Projects</a>
+                                <a href="about.html" class="text-cyan-400">About</a>
+                            </div>
+                        `;
+                        document.querySelector('nav').appendChild(mobileMenu);
+                    }
+                    mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+                });
+            }
+            
+            // Add page load animation
+            anime({
+                targets: 'body',
+                opacity: [0, 1],
+                duration: 1000,
+                easing: 'easeOutCubic'
+            });
+        });
+    </script>
+</body>
+</html>
